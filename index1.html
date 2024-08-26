@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accelerometer Visualization</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #circle {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle"></div>
+    <p id="message">Move your device to see the circle change!</p>
+
+    <script>
+        const circle = document.getElementById('circle');
+        let baseSize = 100;
+
+        function handleMotion(event) {
+            const acceleration = event.accelerationIncludingGravity;
+            const magnitude = Math.sqrt(
+                acceleration.x ** 2 + 
+                acceleration.y ** 2 + 
+                acceleration.z ** 2
+            );
+            
+            const newSize = baseSize + magnitude * 5; // Adjust this multiplier to change sensitivity
+            const clampedSize = Math.min(Math.max(newSize, 50), 300); // Limit size between 50 and 300
+            
+            circle.style.width = `${clampedSize}px`;
+            circle.style.height = `${clampedSize}px`;
+        }
+
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', handleMotion);
+        } else {
+            document.getElementById('message').textContent = 'Device motion not supported on this device.';
+        }
+    </script>
+</body>
+</html>
