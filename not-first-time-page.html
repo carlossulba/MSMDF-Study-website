@@ -63,7 +63,6 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 1: Start Recording</h2>
                 <div id="bar" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
-                <p id="message" class="text-center mt-4">Move your device to see the bar widen!</p>
                 <div id="timer1" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:20
                 </div>
@@ -376,14 +375,12 @@
         }
 
         const bar = document.getElementById('bar');
-        const message = document.getElementById('message');
         let baseWidth = 10;  // Base width of the bar in pixels
 
         function handleMotion(event) {
             const acceleration = event.acceleration;
             if (!acceleration.x && !acceleration.y && !acceleration.z) {
-                message.textContent = "No acceleration data available. Make sure you're on a device with an accelerometer.";
-                return;
+                return; // If no acceleration data, do nothing
             }
 
             const magnitude = Math.sqrt(
@@ -405,16 +402,11 @@
             } else {
                 bar.style.backgroundColor = 'red';
             }
-
-            message.textContent = `Magnitude: ${magnitude.toFixed(2)}`;
         }
 
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', handleMotion, true);
-        } else {
-            message.textContent = 'Device motion not supported on this device.';
         }
-
     </script>
 </body>
 </html>
