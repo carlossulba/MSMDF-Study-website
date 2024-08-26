@@ -389,14 +389,16 @@
                 acceleration.z ** 2
             );
             
-            const newWidth = baseWidth + magnitude * 100; // Adjust this multiplier to change sensitivity
+            const newWidth = baseWidth + magnitude * 150; // Adjust this multiplier to change sensitivity
             const clampedWidth = Math.min(Math.max(newWidth, 10), 50); // Limit width between 10 and 200
 
             bar.style.width = `${clampedWidth}px`;
 
             // Change the color of the bar based on the magnitude
-            if (magnitude < 0.8) {
+            if (magnitude < 0.5) {
                 bar.style.backgroundColor = 'green';
+            } else if (magnitude < 1) {
+                bar.style.backgroundColor = 'yellow';
             } else {
                 bar.style.backgroundColor = 'red';
             }
