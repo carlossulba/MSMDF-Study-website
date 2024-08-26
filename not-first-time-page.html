@@ -84,7 +84,7 @@
         <div id="step2" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 2: On Hand Fingerprinting</h2>
-                <div id="bar" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
+                <div id="bar2" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer2" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:20
                 </div>
@@ -106,7 +106,7 @@
         <div id="step3" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 3: On Table Fingerprinting</h2>
-                <div id="bar" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
+                <div id="bar3" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer3" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:20
                 </div>
@@ -127,7 +127,7 @@
         <div id="step4" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 4: Repeat with Inaudible Audio</h2>
-                <div id="bar" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
+                <div id="bar4" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer4" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:30
                 </div>
@@ -377,11 +377,9 @@
             }, 1000);
         }
 
-        const bar = document.getElementById('bar');
-        let baseWidth = 10;  // Base width of the bar in pixels
 
         function handleMotion(event) {
-            const acceleration = event.acceleration;
+            const acceleration = event.acceleration; // This is without gravity
             if (!acceleration.x && !acceleration.y && !acceleration.z) {
                 return; // If no acceleration data, do nothing
             }
@@ -392,19 +390,22 @@
                 acceleration.z ** 2
             );
             
-            const newWidth = baseWidth + magnitude * 150; // Adjust this multiplier to change sensitivity
-            const clampedWidth = Math.min(Math.max(newWidth, 10), 50); // Limit width between 10 and 200
+            const newWidth = baseWidth + magnitude * 130;
+            const clampedWidth = Math.min(Math.max(newWidth, 10), 50);
 
-            bar.style.width = `${clampedWidth}px`;
+            // Update each bar
+            document.querySelectorAll('[id^="bar"]').forEach(bar => {
+                bar.style.width = `${clampedWidth}px`;
 
-            // Change the color of the bar based on the magnitude
-            if (magnitude < 0.3) {
-                bar.style.backgroundColor = 'green';
-            } else if (magnitude < 1) {
-                bar.style.backgroundColor = 'yellow';
-            } else {
-                bar.style.backgroundColor = 'red';
-            }
+                // Change the color of the bar based on the magnitude
+                if (magnitude < 0.3) {
+                    bar.style.backgroundColor = 'green';
+                } else if (magnitude < 1) {
+                    bar.style.backgroundColor = 'yellow';
+                } else {
+                    bar.style.backgroundColor = 'red';
+                }
+            });
         }
 
         if (window.DeviceMotionEvent) {
