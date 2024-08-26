@@ -389,8 +389,8 @@
                 acceleration.z ** 2
             );
             
-            const newWidth = baseWidth + magnitude * 50; // Adjust this multiplier to change sensitivity
-            const clampedWidth = Math.min(Math.max(newWidth, 10), 200); // Limit width between 10 and 200
+            const newWidth = baseWidth + magnitude * 100; // Adjust this multiplier to change sensitivity
+            const clampedWidth = Math.min(Math.max(newWidth, 10), 50); // Limit width between 10 and 200
 
             bar.style.width = `${clampedWidth}px`;
 
