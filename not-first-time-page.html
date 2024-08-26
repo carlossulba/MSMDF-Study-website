@@ -401,7 +401,7 @@
                 acceleration.z ** 2
             );
             
-            const newSize = baseSize + magnitude * 5; // Adjust this multiplier to change sensitivity
+            const newSize = baseSize + magnitude * 15; // Adjust this multiplier to change sensitivity
             const clampedSize = Math.min(Math.max(newSize, 50), 300); // Limit size between 50 and 300
             
             circle.style.width = `${clampedSize}px`;
