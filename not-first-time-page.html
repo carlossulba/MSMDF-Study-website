@@ -26,24 +26,19 @@
         <h1 class="text-3xl sm:text-4xl lg:text-4xl font-bold mb-6 text-center">Data Collection Session</h1>
 
         <div id="step0" class="bg-white shadow-md rounded p-6 mb-8 w-full max-w-3xl">
-            <h2 class="text-xl sm:text-2xl font-bold mb-4 text-center">
-                Instructions
-            </h2>
+            <div class="flex justify-between items-center mb-2 sm:mb-4">
+                <h2 class="text-lg sm:text-2xl font-bold">Instructions</h2>
+                <div id="bar0" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
+                <div id="timer0" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">00:00</div>
+            </div>
             <p class="mb-4 text-justify">
-                In this session, we will collect raw motion sensor data from your phone. Please follow a series of 5 steps. 
-                After completing each step, confirm that you have followed the instructions correctly by tapping the confirmation button twice. 
-                If you encounter any issues, you can reset the session.
+                In this site, we will collect raw motion sensor data from your phone. Please follow a series of 5 steps to complete the process.
             </p>
             <p class="mb-4 text-justify">
-                Next to the explanation of each step, there is a clock to help you keep track of time.
+                To help you stay on track, we’ve set up a clock and a movement bar. These are just guides, you may complete the steps in less time if you prefer.
             </p>
             <p class="mb-4 text-justify">
-                Before proceeding, please ensure the following:
-                <ul class="list-disc list-inside mb-4 text-justify text-sm sm:text-base">
-                    <li>Your <strong>phone's volume</strong> is set to the maximum level.</li>
-                    <li>You are in an area where you can <strong>move freely</strong> without obstructions.</li>
-                    <li>You are <strong>standing up</strong> and prepared for the data collection session.</li>
-                </ul>
+                If you encounter any issues, you can reset the session and start over at any time.
             </p>
             <div class="mt-7 mb-7">
                 <video class="w-full rounded" style="height: 450px;" controls autoplay loop>
@@ -52,16 +47,24 @@
                 </video>
             </div>
             <p class="mb-4 text-justify">
+                Before proceeding, please ensure:
+                <ul class="list-disc list-inside mb-4 text-justify text-sm sm:text-base">
+                    <li> Your <strong>phone's volume</strong> is at maximum.</li>
+                    <li> You have enough space to <strong>walk 10 steps</strong> in a straight line.</li>
+                    <li> You are in a <strong>quiet place</strong>.</li>
+                    <li> You are <strong>standing</strong> and ready for data collection.</li>
+                </ul>
                 When you are ready, double-tap the button below to begin.
             </p>
+
             <button id="readyButton" onclick="handleReadyTap(this)" class="mt-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full text-sm sm:text-base">
-                Ready
+                Ready (Tap Twice)
             </button>
         </div>
     
         <div id="step1" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
-            <h2 class="text-lg sm:text-2xl font-bold">Step 1: Start Recording</h2>
             <div class="flex justify-between items-center mb-2 sm:mb-4">
+                <h2 class="text-lg sm:text-2xl font-bold">Step 1: Start Recording</h2>
                 <div id="bar1" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer1" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">00:20</div>
             </div>
@@ -79,8 +82,8 @@
         </div>
         
         <div id="step2" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
-            <h2 class="text-lg sm:text-2xl font-bold">Step 2: On Hand Fingerprinting</h2>
             <div class="flex justify-between items-center mb-2 sm:mb-4">
+                <h2 class="text-lg sm:text-2xl font-bold">Step 2: On Hand</h2>
                 <div id="bar2" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer2" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:20
@@ -101,8 +104,8 @@
         </div>
         
         <div id="step3" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
-            <h2 class="text-lg sm:text-2xl font-bold">Step 3: On Table Fingerprinting</h2>
             <div class="flex justify-between items-center mb-2 sm:mb-4">
+                <h2 class="text-lg sm:text-2xl font-bold">Step 3: On Table</h2>
                 <div id="bar3" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer3" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:20
@@ -122,8 +125,8 @@
         </div>
         
         <div id="step4" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
-            <h2 class="text-lg sm:text-2xl font-bold">Step 4: Repeat with Inaudible Audio</h2>
             <div class="flex justify-between items-center mb-2 sm:mb-4">
+                <h2 class="text-lg sm:text-2xl font-bold">Step 4: Repeat</h2>
                 <div id="bar4" style="width: 10px; height: 10px; background-color: #3498db; margin: 0 auto; transition: width 0.2s ease-in-out;"></div>
                 <div id="timer4" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:30
@@ -147,7 +150,7 @@
         
         <div id="step5" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
-                <h2 class="text-lg sm:text-2xl font-bold">Step 5: Walk 10 Steps</h2>
+                <h2 class="text-lg sm:text-2xl font-bold">Step 5: Walk</h2>
                 <div id="timer5" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
                     00:40
                 </div>
@@ -220,14 +223,10 @@
     </div>
 
     <footer class="bg-gray-800 text-white py-4">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 TU Berlin - MLSec Research Group. All rights reserved.</p>
-            <p class="mt-2">Contact: research@example.tu-berlin.de | +49 30 123456789</p>
-            <p class="mt-2">Version 1.0</p>
+        <div class="container mx-auto px-4 flex justify-center items-center space-x-4">
+            <p>c.sulbaranfandino@campus.tu-berlin.de</p>
         </div>
     </footer>
-
-
     
     <script>
         function showModal() {
@@ -395,7 +394,7 @@
                 bar.style.width = `${clampedWidth}px`;
 
                 // Change the color of the bar based on the magnitude
-                if (magnitude < 0.3) {
+                if (magnitude < 0.4) {
                     bar.style.backgroundColor = 'green';
                 } else if (magnitude < 1) {
                     bar.style.backgroundColor = 'yellow';
