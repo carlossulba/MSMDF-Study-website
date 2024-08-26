@@ -380,7 +380,7 @@
         let baseWidth = 10;  // Base width of the bar in pixels
 
         function handleMotion(event) {
-            const acceleration = event.accelerationIncludingGravity;
+            const acceleration = event.acceleration;
             if (!acceleration.x && !acceleration.y && !acceleration.z) {
                 message.textContent = "No acceleration data available. Make sure you're on a device with an accelerometer.";
                 return;
@@ -406,7 +406,7 @@
                 bar.style.backgroundColor = 'red';
             }
 
-            message.textContent = `Device movement detected! Magnitude: ${magnitude.toFixed(2)}`;
+            message.textContent = `Magnitude: ${magnitude.toFixed(2)}`;
         }
 
         if (window.DeviceMotionEvent) {
