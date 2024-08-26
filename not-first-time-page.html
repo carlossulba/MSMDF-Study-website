@@ -25,6 +25,23 @@
     <main class="container mx-auto px-4 py-8 flex flex-col items-center relative">
         <h1 class="text-3xl sm:text-4xl lg:text-4xl font-bold mb-6 text-center">Data Collection Session</h1>
         
+        <!-- This is where our React component will be rendered -->
+        <div id="react-root"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel" src="accelerometer-component.js"></script>
+
+        <script type="text/babel">
+            ReactDOM.render(
+                <AccelerometerVisualization />,
+                document.getElementById('react-root')
+            );
+        </script>
+
+
         <div id="step0" class="bg-white shadow-md rounded p-6 mb-8 w-full max-w-3xl">
             <h2 class="text-xl sm:text-2xl font-bold mb-4 text-center">
                 Instructions
