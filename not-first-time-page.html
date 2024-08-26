@@ -395,10 +395,8 @@
             bar.style.width = `${clampedWidth}px`;
 
             // Change the color of the bar based on the magnitude
-            if (magnitude < 1) {
+            if (magnitude < 0.8) {
                 bar.style.backgroundColor = 'green';
-            } else if (magnitude < 3) {
-                bar.style.backgroundColor = 'yellow';
             } else {
                 bar.style.backgroundColor = 'red';
             }
