@@ -298,13 +298,26 @@
             <p class="mb-4 text-justify">
                 Congratulations! You have successfully completed all steps. 
                 Please return to the Sensor Logger app and tap the 'Stop Recording' button to finish the session.
-                Remember to <strong>send your recordings</strong>.
             </p>
             <div class="flex justify-center items-center">
                 <div class="mt-3 mb-4">
                     <img src="media/step6.png" alt="Step 6 Instruction" class="w-full rounded uniform-image">
                 </div>
             </div>
+            <p class="mb-4 text-justify">
+                We greatly appreciate your participation in this study.
+                We encourage you to go on and take another data collection session. 
+                Your participation in 10 data collection sessions is crucial for the success of this study.
+            </p>
+            <p class="mb-1 text-center text-lg flex items-center justify-center space-x-2">
+                Completed sessions on this device: 
+                <span id="sessionCount" class="ml-2 text-lg font-bold">0</span>
+                <button onclick="updateSessionCount(1)" class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">+</button>
+                <button onclick="updateSessionCount(-1)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">-</button>
+            </p>
+            <p class="mb-3 text-center text-sm text-gray-600">
+                You can keep track of the number of sessions you have completed using this counter.
+            </p>
             <button onclick="finishStudy()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded w-full">
                 Confirm Recording Stopped
             </button>
@@ -535,6 +548,49 @@
         if (window.DeviceMotionEvent) {
             window.addEventListener('devicemotion', handleMotion, true);
         }
+
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function checkSessionCookie() {
+            var sessions = getCookie("completedSessions");
+            if (!sessions) {
+                setCookie("completedSessions", 0, 365);
+                sessions = 0;
+            }
+            return parseInt(sessions);
+        }
+
+        function updateSessionCount(increment) {
+            var sessions = checkSessionCookie();
+            sessions += increment;
+            if (sessions < 0) sessions = 0;
+            if (sessions > 10) sessions = 10;
+            setCookie("completedSessions", sessions, 365);
+            document.getElementById('sessionCount').textContent = sessions;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('sessionCount').textContent = checkSessionCookie();
+        });
     </script>
 </body>
 </html>
