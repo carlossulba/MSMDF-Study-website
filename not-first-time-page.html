@@ -61,7 +61,7 @@
                 In this site, we will collect raw motion sensor data from your phone. Please follow a series of 5 steps to complete the process.
             </p>
             <p class="mb-4 text-justify">
-                For each step, we first explain the task, and then give you 10 seconds to complete it. 
+                For each step, we first explain the task, and then give you around 10 seconds to complete it. 
                 We’ve set up a clock and a movement bar to help you keep track of time and motion intensity.</p>
             <p class="mb-4 text-justify">
                 If you encounter any issues, you can reset the session and start over again. Dont forget to stop the recording in the Sensor Logger app.
@@ -102,9 +102,8 @@
         <div id="step1-execution" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden execution-card">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 1: Start Recording</h2>
-                <div id="timer1" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">00:10</div>
+                <div id="timer1" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">00:15</div>
             </div>
-            <div id="bar1" class="movement-bar"></div>
             <button id="confirmStep1" onclick="handleTap(this, '1')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-sm sm:text-base">
                 Confirm Step 1 (Tap Twice)
             </button>
@@ -133,7 +132,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 2: On Hand</h2>
                 <div id="timer2" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:12
                 </div>
             </div>
             <div id="bar2" class="movement-bar"></div>
@@ -163,7 +162,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 3: On Table</h2>
                 <div id="timer3" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:12
                 </div>
             </div>
             <div id="bar3" class="movement-bar"></div>
@@ -178,7 +177,7 @@
             <p class="text-sm sm:text-base mb-4 text-justify">
                 Just like before, hold your phone still in your hand for 10 seconds as if you were reading a text. 
                 This time, inaudible audio will play in the background. 
-                Before you proceed, please confirm that your phone's volume is set to maximum. 
+                Before you proceed, please confirm that <strong>your phone's volume is set to maximum</strong>. 
             </p>
             <div class="flex justify-center items-center">
                 <div class="mt-3 mb-4">
@@ -194,7 +193,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 4A: Repeat On Hand</h2>
                 <div id="timer4A" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:12
                 </div>
             </div>
             <div id="bar4A" class="movement-bar"></div>
@@ -210,7 +209,7 @@
                 Once again, place your phone on a flat surface, such as a table or the floor, and leave it untouched for 10 seconds.
                 Inaudible audio will continue playing in the background.
                 This will help us assess our defenses under more challenging conditions.
-                Please place your phone securely before continuing.
+                Please <strong>place your phone securely before continuing</strong>.
             </p>
             <div class="flex justify-center items-center">
                 <div class="mt-3 mb-4">
@@ -226,7 +225,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 4B: Repeat On Table</h2>
                 <div id="timer4B" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:12
                 </div>
             </div>
             <div id="bar4B" class="movement-bar"></div>
@@ -258,7 +257,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 5A: Walk First 10 Steps</h2>
                 <div id="timer5A" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:15
                 </div>
             </div>
             <button id="confirmStep5A" onclick="handleTap(this, '5A')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-sm sm:text-base">
@@ -289,7 +288,7 @@
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl font-bold">Step 5B: Walk Second 10 Steps</h2>
                 <div id="timer5B" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">
-                    00:10
+                    00:15
                 </div>
             </div>
             <button id="confirmStep5B" onclick="handleTap(this, '5B')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-sm sm:text-base">
@@ -412,7 +411,7 @@
             document.getElementById(`step${step}-execution`).classList.remove('hidden');
             currentStep = 2;
 
-            const durations = { '1': 10, '2': 10, '3': 10, '4A': 10, '4B': 10, '5A': 10, '5B': 10 };
+            const durations = { '1': 15, '2': 12, '3': 12, '4A': 12, '4B': 12, '5A': 15, '5B': 15 };
             startTimer(durations[step], document.querySelector(`#timer${step}`));
 
             if (step === '4A' || step === '4B') {
@@ -447,17 +446,19 @@
 
         function startTimer(duration, display) {
             let timer = duration, seconds;
-            let interval = setInterval(function () {
-                seconds = parseInt(timer % 60, 10);
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+            setTimeout(function() {
+                let interval = setInterval(function () {
+                    seconds = parseInt(timer % 60, 10);
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = "00:" + seconds;
+                    display.textContent = "00:" + seconds;
 
-                if (--timer < 0) {
-                    clearInterval(interval);
-                    timer = 0;
-                }
-            }, 1000);
+                    if (--timer < 0) {
+                        clearInterval(interval);
+                        timer = 0;
+                    }
+                }, 1000);
+            }, 1500); // Set a 1.5-second delay before starting the timer
         }
 
         function showStep6() {
@@ -489,7 +490,8 @@
             document.getElementById('step0').classList.remove('hidden');
             currentStep = 0;
             tapCount = 0;
-            stopInaudibleSound();  // Ensure any sounds are stopped
+            stopInaudibleSound();
+            window.location.href = window.location.href;
         }
 
         let audioContext;
@@ -531,8 +533,9 @@
                 acceleration.z ** 2
             );
             
-            const newWidth = baseWidth + magnitude * 130;
-            const clampedWidth = Math.min(Math.max(newWidth, 10), 50);
+            // Change width of the bar based on the magnitude
+            const newWidth = baseWidth + magnitude * 150;
+            const clampedWidth = Math.min(Math.max(newWidth, 10), 80);
 
             // Update each bar
             document.querySelectorAll('[id^="bar"]').forEach(bar => {
