@@ -468,6 +468,11 @@
         }
 
         function showExplanation(step) {
+            // Vibrate the device
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
+
             hideAllSteps();
             document.getElementById(`step${step}-explanation`).classList.remove('hidden');
             currentStep = 1;
@@ -477,6 +482,11 @@
         }
 
         function showExecution(step) {
+            // Vibrate the device
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
+            
             hideAllSteps();
             document.getElementById(`step${step}-execution`).classList.remove('hidden');
             currentStep = 2;
