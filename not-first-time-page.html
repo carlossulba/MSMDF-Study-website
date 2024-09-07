@@ -445,11 +445,9 @@
         }
 
         function handleTap(button, step) {
-            // Vibrate the device for 50 milliseconds
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50);
-            }
-            
+            // Vibrate the device
+            vibrateDevice();
+
             tapCount++;
             if (tapCount === 2) {
                 if (currentStep === 0) {
