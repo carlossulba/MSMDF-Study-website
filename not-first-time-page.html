@@ -434,13 +434,16 @@
     </footer>
     
     <script>
+        // Your existing JavaScript code can be placed here
+        var isMobile = /iPhone|iPod|iPad|Android|BlackBerry/.test(navigator.userAgent);
+
         $('.button').on(isMobile ? 'touchstart' : 'mousedown', function (e) {
-        navigator.vibrate(Infinity)
-        })
+            navigator.vibrate(Infinity); // 'Infinity' is a number
+        });
 
         $('.button').on(isMobile ? 'touchend' : 'mouseup', function (e) {
-        navigator.vibrate(0)
-        })
+            navigator.vibrate(0)
+        });
 
         let tapCount = 0;
         let currentStep = 0;
