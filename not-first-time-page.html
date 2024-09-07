@@ -435,9 +435,13 @@
     
     <script>
         $('.button').on(isMobile ? 'touchstart' : 'mousedown', function (e) {
-        navigator.vibrate(Infinity) // Infinity is a number
+        navigator.vibrate(Infinity)
         })
-        
+
+        $('.button').on(isMobile ? 'touchend' : 'mouseup', function (e) {
+        navigator.vibrate(0)
+        })
+
         let tapCount = 0;
         let currentStep = 0;
 
