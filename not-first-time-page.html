@@ -446,7 +446,11 @@
 
         function handleTap(button, step) {
             // Vibrate the device
-            vibrateDevice();
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            } else {
+                console.log('Vibration not supported on this device');
+            }
 
             tapCount++;
             if (tapCount === 2) {
