@@ -450,8 +450,9 @@
         function handleTap(button, step) {
             // Vibrate the device
             if ('vibrate' in navigator) {
-                navigator.vibrate(100);
+                navigator.vibrate([100]);
             }
+            navigator.vibrate([100]);
 
             tapCount++;
             if (tapCount === 2) {
@@ -486,7 +487,7 @@
             if ('vibrate' in navigator) {
                 navigator.vibrate(100);
             }
-            
+
             hideAllSteps();
             document.getElementById(`step${step}-execution`).classList.remove('hidden');
             currentStep = 2;
