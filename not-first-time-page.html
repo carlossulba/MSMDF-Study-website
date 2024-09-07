@@ -450,9 +450,9 @@
         function handleTap(button, step) {
             // Vibrate the device
             if ('vibrate' in navigator) {
-                navigator.vibrate(200);
+                navigator.vibrate([200]);
             }
-            navigator.vibrate(200);
+            navigator.vibrate([200]);
 
 
             tapCount++;
