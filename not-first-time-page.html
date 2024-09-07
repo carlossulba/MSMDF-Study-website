@@ -434,17 +434,6 @@
     </footer>
     
     <script>
-        // Your existing JavaScript code can be placed here
-        var isMobile = /iPhone|iPod|iPad|Android|BlackBerry/.test(navigator.userAgent);
-
-        $('.button').on(isMobile ? 'touchstart' : 'mousedown', function (e) {
-            navigator.vibrate(Infinity); // 'Infinity' is a number
-        });
-
-        $('.button').on(isMobile ? 'touchend' : 'mouseup', function (e) {
-            navigator.vibrate(0)
-        });
-
         let tapCount = 0;
         let currentStep = 0;
 
@@ -461,10 +450,8 @@
         function handleTap(button, step) {
             // Vibrate the device
             if ('vibrate' in navigator) {
-                navigator.vibrate([200]);
+                navigator.vibrate(200);
             }
-            navigator.vibrate([200]);
-
 
             tapCount++;
             if (tapCount === 2) {
@@ -551,7 +538,7 @@
                         timer = 0;
                     }
                 }, 1000);
-            }, 1000); // Set a 1.5-second delay before starting the timer
+            }, 1000); // Set a 1-second delay before starting the timer
         }
 
         function showStep6() {
