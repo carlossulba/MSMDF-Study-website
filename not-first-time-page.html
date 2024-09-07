@@ -431,6 +431,9 @@
     </footer>
     
     <script>
+        // Check if the device is mobile
+        var isMobile = /iPhone|iPod|iPad|Android|BlackBerry/.test(navigator.userAgent);
+
         let tapCount = 0;
         let currentStep = 0;
 
@@ -446,7 +449,9 @@
 
         function handleTap(button, step) {
             // Vibrate the device
-            vibrateDevice()
+            if ('vibrate' in navigator) {
+                navigator.vibrate(100);
+            }
 
             tapCount++;
             if (tapCount === 2) {
@@ -460,37 +465,6 @@
                 tapCount = 0;
             }
             setTimeout(() => tapCount = 0, 500);
-        }
-
-        function vibrateDevice() {
-            // Try the standard Vibration API
-            if ('vibrate' in navigator) {
-                navigator.vibrate(100);
-            }
-            
-            // Try deprecated iOS-specific vibration
-            if ('webkitAudioContext' in window) {
-                var context = new (window.webkitAudioContext || window.AudioContext)();
-                var oscillator = context.createOscillator();
-                oscillator.frequency.value = 1;
-                oscillator.connect(context.destination);
-                oscillator.start(0);
-                oscillator.stop(context.currentTime + 0.1);
-            }
-            
-            // Fallback for older iOS devices
-            if ('notification' in window) {
-                window.navigator.notification.vibrate(100);
-            }
-            
-            // Fallback for some Android devices
-            if ('Notification' in window && Notification.permission === "granted") {
-                navigator.serviceWorker.ready.then(function(registration) {
-                    registration.showNotification('Vibration', {
-                        vibrate: [100]
-                    });
-                });
-            }
         }
 
         function showExplanation(step) {
