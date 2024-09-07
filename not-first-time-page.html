@@ -69,11 +69,11 @@
             <p class="mb-4 text-justify">
                 <p class="font-bold text-md">Before proceeding, please ensure:</p>
                 <ul class="list-disc list-inside mt-2 mb-4 text-justify text-sm sm:text-base">
-                    <li> Your phone's volume is at maximum.</li>
-                    <li> You have enough space to walk 10 steps in a straight line.</li>
-                    <li> You are standing and ready for data collection.</li>
+                    <li> Your phone's <strong>volume is at maximum</strong>.</li>
+                    <li> You have enough space to walk <strong>10 steps</strong> in a straight line.</li>
+                    <li> You are <strong>standing</strong> and ready for data collection.</li>
                     <li> There is not too much noise in the background.</li>
-                    <li> You are not wearing headphones</li>
+                    <li> You are <strong>not wearing headphones</strong></li>
                 </ul>
                 When you are ready, double-tap the button below to begin.
             </p>
@@ -93,7 +93,8 @@
                 Open the Sensor Logger app, and start the recording.
                 Then return to this page. 
                 Please tap the button below twice when you are ready to do it.
-                You will have 15 seconds to do it.
+                You will have 15 seconds to do it. It is ok if you move your phone now.
+                If you had to reset the session, remember to stop the last recording before starting a new one.
             </p>
             <div class="flex justify-center items-center">
                 <div class="mt-3 mb-4 p-4 bg-black rounded-lg" style="max-width: 400px; border: 1px solid black; border-radius: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);">
@@ -123,7 +124,7 @@
         <div id="step2-explanation" class="bg-white shadow-md rounded p-4 sm:p-6 mb-8 w-full max-w-3xl relative hidden explanation-card">
             <div class="flex justify-between items-center mb-2 sm:mb-4">
                 <h2 class="text-lg sm:text-2xl mb-4 font-bold">Step 1: On Hand</h2>
-                <div id="bar0" class="movement-bar"></div>
+                <div id="bar00" class="movement-bar"></div>
                 <div id="timer0" class="text-lg sm:text-2xl font-bold p-2 bg-white shadow-md rounded">00:12</div>
             </div>
             <p class="text-sm sm:text-base mb-4 text-justify">
@@ -383,6 +384,7 @@
                 <p class="text-center text-gray-700 mb-4">
                     Please stop the data recording in the Sensor Logger app before resetting the session.
                     This is crucial to prevent data loss.
+                    <strong>Remember to stop the recording</strong>
                 </p>
                 <div class="flex justify-center space-x-4">
                     <button onclick="proceedReset()" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -431,9 +433,6 @@
     </footer>
     
     <script>
-        // Check if the device is mobile
-        var isMobile = /iPhone|iPod|iPad|Android|BlackBerry/.test(navigator.userAgent);
-
         let tapCount = 0;
         let currentStep = 0;
 
@@ -450,9 +449,8 @@
         function handleTap(button, step) {
             // Vibrate the device
             if ('vibrate' in navigator) {
-                navigator.vibrate([100]);
+                navigator.vibrate(100);
             }
-            navigator.vibrate([100]);
 
             tapCount++;
             if (tapCount === 2) {
@@ -539,7 +537,7 @@
                         timer = 0;
                     }
                 }, 1000);
-            }, 1500); // Set a 1.5-second delay before starting the timer
+            }, 1000); // Set a 1.5-second delay before starting the timer
         }
 
         function showStep6() {
@@ -548,7 +546,7 @@
         }
 
         function finishStudy() {
-            alert("Thank you for participating in our study! You will now be redirected to the home page.");
+            alert("Thank you for participating in our study! You will now be redirected to the home page. If you already did 10 recordings you can pause the study and delete the app.");
             window.location.href = "index.html";  // Redirect to the home page
         }
 
