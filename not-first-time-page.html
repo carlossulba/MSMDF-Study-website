@@ -622,6 +622,20 @@
                 acceleration.z ** 2
             );
             
+            updateBars(magnitude);
+        }
+
+        function handleOrientation(event) {
+            const beta = event.beta;  // Front-to-back tilt in degrees, range: -180 to 180
+            const gamma = event.gamma; // Left-to-right tilt in degrees, range: -90 to 90
+            
+            // Calculate a magnitude-like value from orientation
+            const magnitude = Math.sqrt(beta ** 2 + gamma ** 2) / 180;
+            
+            updateBars(magnitude);
+        }
+
+        function updateBars(magnitude) {
             // Change width of the bar based on the magnitude
             const newWidth = baseWidth + magnitude * 150;
             const clampedWidth = Math.min(Math.max(newWidth, 10), 80);
@@ -641,9 +655,44 @@
             });
         }
 
-        if (window.DeviceMotionEvent) {
-            window.addEventListener('devicemotion', handleMotion, true);
+        function requestMotionPermission() {
+            if (typeof DeviceMotionEvent.requestPermission === 'function') {
+                DeviceMotionEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            window.addEventListener('devicemotion', handleMotion, true);
+                        } else {
+                            console.log('Permission denied for accessing device motion');
+                            setupOrientationListener();
+                        }
+                    })
+                    .catch(console.error);
+            } else {
+                // Handle regular non iOS 13+ devices
+                setupMotionListener();
+            }
         }
+
+        function setupMotionListener() {
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', handleMotion, true);
+            } else {
+                console.log('Device motion not supported');
+                setupOrientationListener();
+            }
+        }
+
+        function setupOrientationListener() {
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', handleOrientation, true);
+            } else {
+                console.log('Neither device motion nor orientation is supported');
+                // Here you could set up a fallback method, e.g., mouse movement
+            }
+        }
+
+        // Call this function when the user interacts with the page, e.g., on a button click
+        document.getElementById('startButton').addEventListener('click', requestMotionPermission);
 
         function setCookie(name, value, days) {
             var expires = "";
