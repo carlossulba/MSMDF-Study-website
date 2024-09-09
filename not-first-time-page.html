@@ -488,6 +488,8 @@
                 navigator.vibrate(200);
             }
 
+            requestMotionPermission();
+
             hideAllSteps();
             document.getElementById(`step${step}-execution`).classList.remove('hidden');
             currentStep = 2;
@@ -591,7 +593,7 @@
             oscillator = audioContext.createOscillator();
 
             oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(20000, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(18000, audioContext.currentTime);
             oscillator.connect(audioContext.destination);
             oscillator.start();
         }
@@ -687,12 +689,8 @@
                 window.addEventListener('deviceorientation', handleOrientation, true);
             } else {
                 console.log('Neither device motion nor orientation is supported');
-                // Here you could set up a fallback method, e.g., mouse movement
             }
         }
-
-        // Call this function when the user interacts with the page, e.g., on a button click
-        document.getElementById('startButton').addEventListener('click', requestMotionPermission);
 
         function setCookie(name, value, days) {
             var expires = "";
@@ -735,6 +733,10 @@
 
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('sessionCount').textContent = checkSessionCookie();
+        });
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            requestMotionPermission();
         });
     </script>
 </body>
